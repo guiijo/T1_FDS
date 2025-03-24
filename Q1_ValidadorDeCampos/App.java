@@ -1,12 +1,21 @@
 public class App {
-    public static void main(String[] args) throws Exception {
-        String email = "bernardo.copstein@pucrs.br";
-        var validador = new Validador();
-
-        if (validador.valida(Validador.Tipo.EMAIL, email)){
-            System.out.println(email+" é um email válido!");
-        }else{
-            System.out.println(email+" não é um email válido!");
+    public static void main(String[] args) {
+        testarValidacao(ValidadorFactory.Tipo.EMAIL, "aluno@universidade.edu.br");
+        testarValidacao(ValidadorFactory.Tipo.EMAIL, "email.invalido@");
+        
+        testarValidacao(ValidadorFactory.Tipo.CPF, "12345678909");  
+        testarValidacao(ValidadorFactory.Tipo.CPF, "1234567890911"); 
+        
+        testarValidacao(ValidadorFactory.Tipo.MATRICULA, "20231876"); 
+        testarValidacao(ValidadorFactory.Tipo.MATRICULA, "202318765"); 
+    }
+    
+    private static void testarValidacao(ValidadorFactory.Tipo tipo, String valor) {
+        ValidadorCampo validador = ValidadorFactory.getValidador(tipo);
+        if (validador.validar(valor)) {
+            System.out.println(valor + " é um " + tipo + " válido!");
+        } else {
+            System.out.println(valor + " não é um " + tipo + " válido!");
         }
     }
 }
