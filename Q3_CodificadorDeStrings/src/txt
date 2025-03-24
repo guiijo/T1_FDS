@@ -1,0 +1,8 @@
+
+Exemplo
+Log log = new LogSimples();
+log = new LogInfo(log);
+log = new LogErro(log);
+
+log.log("Sistema iniciou.");
+
